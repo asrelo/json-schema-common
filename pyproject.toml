@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools >=67.6.1,<77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "json-schema-common"
+# TODO: dynamically loaded version?
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema~=4.22",
+]
+
+[project.optional-dependencies]
+dev = ["pylint~=3.3.5"]
+
+[tool.setuptools.package-data]
+json_schema_common = ["schemas/**.json"]
