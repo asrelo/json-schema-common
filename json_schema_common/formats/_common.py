@@ -10,3 +10,6 @@ class FormatCheckingFuncInfo(NamedTuple):
 
 def register_func_in_checker(checker, func_info):
     return checker.checks(func_info.format_, func_info.raises)(func_info.func)
+
+def register_funcs_in_checkers(checker, funcs_info):
+    return [register_func_in_checker(checker, func_info) for func_info in funcs_info]
