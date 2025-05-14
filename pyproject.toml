@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "json-schema-common"
 # TODO: dynamically loaded version?
-version = "0.3.0"
+version = "0.3.1"
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema~=4.22",
