@@ -2,14 +2,13 @@ import functools
 import pathlib
 import urllib.parse
 
-from referencing import Registry
 from referencing.exceptions import NoSuchResource
 
 from .retrieval import to_maybe_cached_resource
 
 __all__ = (
     'retrieve_text_from_filesystem',
-    'build_filesystem_registry',
+    'build_retrieve_from_filesystem',
 )
 
 def retrieve_text_from_filesystem(uri, uri_base, path, *, encoding='utf-8', open_buffering=-1):
@@ -35,11 +34,11 @@ def retrieve_text_from_filesystem(uri, uri_base, path, *, encoding='utf-8', open
     ) as file:
         return file.read()
 
-# I tried subclassing Registry, but referencing._attrs.UnsupportedSubclassing .
-# There is no interface for Registry, so no good composition.
-def build_filesystem_registry(uri_base, path, *, cache=None, encoding='utf-8', open_buffering=-1):
+def build_retrieve_from_filesystem(
+    uri_base, path, *, cache=None, encoding='utf-8', open_buffering=-1,
+):
     retrieve_text_from_filesystem_fn = functools.partial(
         retrieve_text_from_filesystem,
         uri_base=uri_base, path=path, encoding=encoding, open_buffering=open_buffering,
     )
-    return Registry(retrieve=to_maybe_cached_resource(cache)(retrieve_text_from_filesystem_fn))
+    return to_maybe_cached_resource(cache)(retrieve_text_from_filesystem_fn)
