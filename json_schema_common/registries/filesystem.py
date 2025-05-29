@@ -16,7 +16,7 @@ def retrieve_text_from_filesystem(uri, uri_base, path, *, encoding='utf-8', open
     uri_split = urllib.parse.urlsplit(uri, scheme='')
     uri_base_split = urllib.parse.urlsplit(uri_base, scheme='')
     if uri_split.scheme != uri_base_split.scheme:
-        return NoSuchResource(uri)
+        raise NoSuchResource(uri)
     if uri_base_split.query:    # absent value is empty string
         raise ValueError(f'uri_base is not allowed to have query, but it was given: {uri_base}')
     if uri_split.query:         # absent value is empty string
