@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file:///json_schema_common/schemas/common/range_integer.json"
+  "$id": "file:///json_schema_common/schemas/common/range_integer.json",
   "$ref": "range.json",
   "title": "Integer range",
   "prefixItems": [{ "type": "integer" }, { "type": "integer" }]
