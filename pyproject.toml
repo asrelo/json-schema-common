@@ -4,15 +4,20 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "json-schema-common"
-# TODO: dynamically loaded version?
-version = "0.4.1"
 requires-python = ">=3.11"
 dependencies = [
     "jsonschema>=4.23.0,<5",
 ]
+dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = ["pylint~=3.3.8"]
 
 [tool.setuptools.package-data]
-json_schema_common = ["schemas/**.json"]
+json_schema_common = [
+    "VERSION",
+    "schemas/**.json",
+]
+
+[tool.setuptools.dynamic]
+version = { file = ["json_schema_common/VERSION"] }

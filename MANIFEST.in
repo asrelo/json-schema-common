@@ -1,1 +1,2 @@
+include json_schema_common/VERSION
 recursive-include json_schema_common/schemas *.json
