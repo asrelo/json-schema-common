@@ -16,9 +16,9 @@ BUNDLED_SCHEMAS_PATH: Path = _PACKAGE_PATH / 'schemas'
 _BUNDLED_SCHEMAS_ENCODING: str = 'utf-8'
 
 def build_retrieve_bundled_schemas(
-    *, cache: Optional[Callable[[Retrieve[D]], Retrieve[D]]] = None,
+    *, cache: Optional[Callable[[Retrieve[D]], Retrieve[D]] | bool] = None,
     open_buffering: int = -1,
-) -> Callable[[Callable[[str], object]], Retrieve[D]]:
+) -> Retrieve[D]:
     return build_retrieve_from_filesystem(
         BUNDLED_SCHEMAS_URI_BASE, BUNDLED_SCHEMAS_PATH,
         cache=cache, encoding=_BUNDLED_SCHEMAS_ENCODING, open_buffering=open_buffering,

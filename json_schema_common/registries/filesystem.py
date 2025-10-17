@@ -1,5 +1,6 @@
 from collections.abc import Callable
 import functools
+from os import PathLike
 import pathlib
 from typing import Optional, TypeVar
 import urllib.parse
@@ -7,6 +8,7 @@ import urllib.parse
 from referencing.exceptions import NoSuchResource
 from referencing.typing import Retrieve
 
+from json_schema_common._common import EncodingId
 from .retrieval import to_maybe_cached_resource
 
 __all__ = (
@@ -17,8 +19,9 @@ __all__ = (
 D = TypeVar('D')
 
 def retrieve_text_from_filesystem(
-    uri, uri_base, path, *, encoding='utf-8', open_buffering: int = -1,
-):
+    uri: str, uri_base: str, path: str | PathLike[str],
+    *, encoding: Optional[EncodingId] = 'utf-8', open_buffering: int = -1,
+) -> str:
     # here scheme is a default value:
     uri_split = urllib.parse.urlsplit(uri, scheme='')
     uri_base_split = urllib.parse.urlsplit(uri_base, scheme='')
@@ -42,12 +45,12 @@ def retrieve_text_from_filesystem(
         return file.read()
 
 def build_retrieve_from_filesystem(
-    uri_base,
-    path,
-    *, cache: Optional[Callable[[Retrieve[D]], Retrieve[D]]] = None,
+    uri_base: str,
+    path: str | PathLike[str],
+    *, cache: Optional[Callable[[Retrieve[D]], Retrieve[D]] | bool] = None,
     encoding='utf-8',
     open_buffering: int = -1,
-) -> Callable[[Callable[[str], object]], Retrieve[D]]:
+) -> Retrieve[D]:
     retrieve_text_from_filesystem_fn = functools.partial(
         retrieve_text_from_filesystem,
         uri_base=uri_base, path=path, encoding=encoding, open_buffering=open_buffering,
