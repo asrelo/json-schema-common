@@ -2,12 +2,8 @@ from collections.abc import Sequence
 
 from ._common import FormatCheckingFuncInfo
 
-__all__ = (
-    'is_numbers_range',
-    'is_numbers_range_info',
-)
 
-def is_numbers_range(instance):
+def is_numbers_range(instance: object) -> bool:
     return (
         isinstance(instance, Sequence)
         and (len(instance) == 2)
