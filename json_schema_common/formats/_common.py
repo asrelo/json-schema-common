@@ -22,7 +22,7 @@ def register_func_in_checker(
     return checker.checks(func_info.format_, func_info.raises)(func_info.func)
 
 
-def register_funcs_in_checkers(
+def register_funcs_in_checker(
     checker: 'FormatChecker', funcs_info: Iterable[FormatCheckingFuncInfo],
 ) -> Sequence[FormatCheckFn]:
     return [register_func_in_checker(checker, func_info) for func_info in funcs_info]
