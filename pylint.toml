@@ -395,7 +395,7 @@ disable = [
     "suppressed-message",
     "useless-suppression",
     #"deprecated-pragma",
-    #"use-symbolic-message-instead",
+    "use-symbolic-message-instead",
     "use-implicit-booleaness-not-comparison-to-string",
     "use-implicit-booleaness-not-comparison-to-zero",
     # end of defaults
@@ -417,6 +417,10 @@ disable = [
 # multiple time (only on the command line, not in the configuration file where it
 # should appear only once). See also the "--disable" option for examples.
 # enable =
+enable = [
+    "bad-inline-option",
+    "deprecated-pragma",
+]
 
 [tool.pylint.method_args]
 # List of qualified names (i.e., library.method) which require a timeout
