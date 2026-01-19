@@ -1,5 +1,5 @@
 from collections.abc import Callable
-from typing import Optional, Any, TypeVar
+from typing import Optional, TypeVar
 
 from referencing import Resource
 from referencing.retrieval import to_cached_resource as original_to_cached_resource
