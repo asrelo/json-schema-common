@@ -1,8 +1,8 @@
 # Initially generated with `pylint --generate-toml-config`.
 # `pylint --version` output:
-# pylint 3.3.8
-# astroid 3.3.9
-# Python 3.11.9 ...
+# pylint 3.3.9
+# astroid 3.3.11
+# Python 3.12.10 ...
 
 [tool.pylint.main]
 # Analyse import fallback blocks. This can be used to support both Python 2 and 3
